@@ -1,0 +1,28 @@
+{
+  "name": "project-templates",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "packageManager": "yarn@4.6.0",
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "eslint": "^9.21.0",
+    "prettier": "^3.5.2",
+    "typescript": "^5.8.2"
+  },
+  "scripts": {
+    "dev": "concurrently \"yarn workspace next-app dev\" \"yarn workspace cms develop\"",
+    "build": "yarn workspace next-app build && yarn workspace cms build",
+    "start": "concurrently \"yarn workspace next-app start\" \"yarn workspace cms start\"",
+    "next:dev": "yarn workspace next-app dev",
+    "next:build": "yarn workspace next-app build",
+    "next:start": "yarn workspace next-app start",
+    "cms:dev": "yarn workspace cms develop",
+    "cms:build": "yarn workspace cms build",
+    "cms:start": "yarn workspace cms start"
+  }
+}
