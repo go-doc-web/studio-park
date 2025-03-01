@@ -49,6 +49,7 @@ build/
 # Файлы окружения
 .env
 .env.local
+.env.production
 .env.*.local
 
 # Vercel
@@ -74,3 +75,8 @@ exports/
 .strapi/
 .strapi-updater.json
 .strapi-cloud.json
+
+.tmpdata.db
+studio-park.code-workspace
+.yarn/install-state.gz
+
