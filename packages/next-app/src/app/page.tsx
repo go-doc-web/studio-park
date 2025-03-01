@@ -1,28 +1,29 @@
-'use client';
-import { gql } from '@apollo/client';
-import { useQuery } from '@apollo/client';
+import { apolloClient } from '../lib/apolloClient';
+import GetMenu from '../query/queries/getMenus.graphql';
+import type { GetMenuQuery } from '../generated/graphql';
+
 import Image from 'next/image';
 import styles from './page.module.css';
 
-const GET_MENUS = gql`
-  query GetMenus {
-    menus {
-      name
-      slug
-    }
-  }
-`;
+export const revalidate = 60;
 
-export default function Home() {
-  const { loading, error, data } = useQuery(GET_MENUS);
+export default async function Home() {
+  const { loading, data } = await apolloClient.query<GetMenuQuery>({
+    query: GetMenu,
+  });
   console.log('data', data);
+  console.log('loading', loading);
 
   if (loading) {
     return <p>Loading...</p>;
   }
   return (
     <div className={styles.page}>
-      <main className={styles.main}></main>
+      <main className={styles.main}>
+        {data?.menus?.map((menu_item, index) => {
+          return <div key={index}>{menu_item?.name}</div>;
+        })}
+      </main>
       <footer className={styles.footer}>
         <a
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"

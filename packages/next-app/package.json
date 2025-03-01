@@ -11,7 +11,9 @@
   "dependencies": {
     "@apollo/client": "^3.13.1",
     "@apollo/experimental-nextjs-app-support": "^0.11.9",
+    "@graphql-tools/webpack-loader": "^7.0.0",
     "graphql": "^16.10.0",
+    "graphql-tag": "^2.12.6",
     "next": "15.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -21,6 +23,7 @@
     "@graphql-codegen/cli": "^5.0.5",
     "@graphql-codegen/typescript": "^4.1.5",
     "@graphql-codegen/typescript-operations": "^4.5.1",
+    "@graphql-codegen/typescript-react-apollo": "^4.3.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

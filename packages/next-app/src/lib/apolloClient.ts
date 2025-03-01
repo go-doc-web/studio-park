@@ -9,4 +9,18 @@ export const apolloClient = new ApolloClient({
     fetch,
   }),
   cache: new InMemoryCache(),
+  //TODO Обязатяльно не забіть, отключен кеш!!!
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'ignore',
+    },
+    query: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'ignore',
+    },
+    mutate: {
+      fetchPolicy: 'no-cache',
+    },
+  },
 });
