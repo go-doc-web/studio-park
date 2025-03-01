@@ -23,6 +23,11 @@
     "next:start": "yarn workspace next-app start",
     "cms:dev": "yarn workspace cms develop",
     "cms:build": "yarn workspace cms build",
-    "cms:start": "yarn workspace cms start"
+    "cms:start": "yarn workspace cms start",
+    "gen": "yarn workspace "
+  },
+  "dependencies": {
+    "@apollo/client": "^3.13.1",
+    "@apollo/experimental-nextjs-app-support": "^0.11.9"
   }
 }

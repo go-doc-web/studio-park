@@ -7,6 +7,9 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "baseUrl": "./",
-    "paths": { "@/*": ["packages/*/src"] }
-  }
+    "paths": {
+      "@/*": ["packages/*/src"]
+    }
+  },
+  "include": ["global.d.ts", "packages"]
 }

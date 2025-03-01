@@ -15,11 +15,7 @@
     "strictBuiltinIteratorReturn": true,
     "alwaysStrict": true,
     "useUnknownInCatchVariables": true,
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "resolveJsonModule": true,
     "allowJs": true,
     "incremental": true,
@@ -31,12 +27,15 @@
     ]
   },
   "include": [
+    "src/**/*",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    "**/*.graphql",
+    ".next/types/**/*.ts",
+    "src/generated/**/*",
+    "../../global.d.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  // "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }
