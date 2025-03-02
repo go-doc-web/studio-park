@@ -24,7 +24,7 @@
     "cms:dev": "yarn workspace cms develop",
     "cms:build": "yarn workspace cms build",
     "cms:start": "yarn workspace cms start",
-    "gen": "yarn workspace "
+    "gen": "yarn workspace next-app graphqlgen"
   },
   "dependencies": {
     "@apollo/client": "^3.13.1",
