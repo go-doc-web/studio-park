@@ -1,0 +1,24 @@
+query GET_CONTENT_PAGES_BY_SLUG($slug: String!) {
+  contentPages(filters: { slug: { eq: $slug } }) {
+    __typename
+    slug
+    title
+    showCTA
+    Dynamic {
+      # TODO Разбить на фрагменті
+      ... on ComponentSectionsHero {
+        title
+        description
+        id
+        isImagesRigth
+        media {
+          alternativeText
+        }
+      }
+      ... on ComponentSectionsTextOnly {
+        id
+        OnlyText
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_sections_text_onlies",
+  "info": {
+    "displayName": "Text only"
+  },
+  "options": {},
+  "attributes": {
+    "OnlyText": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}
