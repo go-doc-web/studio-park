@@ -15,7 +15,9 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  ContentPageDynamicDynamicZoneInput: { input: any; output: any; }
   DateTime: { input: any; output: any; }
+  I18NLocaleCode: { input: any; output: any; }
   JSON: { input: any; output: any; }
 };
 
@@ -42,6 +44,86 @@ export type BooleanFilterInput = {
   null?: InputMaybe<Scalars['Boolean']['input']>;
   or?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
   startsWith?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type ComponentSectionsHero = {
+  __typename?: 'ComponentSectionsHero';
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  isImagesRigth?: Maybe<Scalars['Boolean']['output']>;
+  media?: Maybe<UploadFile>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type ComponentSectionsTextOnly = {
+  __typename?: 'ComponentSectionsTextOnly';
+  OnlyText: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+};
+
+export type ContentPage = {
+  __typename?: 'ContentPage';
+  Dynamic?: Maybe<Array<Maybe<ContentPageDynamicDynamicZone>>>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  locale?: Maybe<Scalars['String']['output']>;
+  localizations: Array<Maybe<ContentPage>>;
+  localizations_connection?: Maybe<ContentPageRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  showCTA?: Maybe<Scalars['Boolean']['output']>;
+  slug: Scalars['String']['output'];
+  title?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type ContentPageLocalizationsArgs = {
+  filters?: InputMaybe<ContentPageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type ContentPageLocalizations_ConnectionArgs = {
+  filters?: InputMaybe<ContentPageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ContentPageDynamicDynamicZone = ComponentSectionsHero | ComponentSectionsTextOnly | Error;
+
+export type ContentPageEntityResponseCollection = {
+  __typename?: 'ContentPageEntityResponseCollection';
+  nodes: Array<ContentPage>;
+  pageInfo: Pagination;
+};
+
+export type ContentPageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ContentPageFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  documentId?: InputMaybe<IdFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<ContentPageFiltersInput>;
+  not?: InputMaybe<ContentPageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ContentPageFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  showCTA?: InputMaybe<BooleanFilterInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type ContentPageInput = {
+  Dynamic?: InputMaybe<Array<Scalars['ContentPageDynamicDynamicZoneInput']['input']>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  showCTA?: InputMaybe<Scalars['Boolean']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ContentPageRelationResponseCollection = {
+  __typename?: 'ContentPageRelationResponseCollection';
+  nodes: Array<ContentPage>;
 };
 
 export type DateTimeFilterInput = {
@@ -72,6 +154,12 @@ export type DateTimeFilterInput = {
 export type DeleteMutationResponse = {
   __typename?: 'DeleteMutationResponse';
   documentId: Scalars['ID']['output'];
+};
+
+export type Error = {
+  __typename?: 'Error';
+  code: Scalars['String']['output'];
+  message?: Maybe<Scalars['String']['output']>;
 };
 
 export type FileInfoInput = {
@@ -105,7 +193,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = I18NLocale | Menu | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentSectionsHero | ComponentSectionsTextOnly | ContentPage | I18NLocale | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -210,52 +298,18 @@ export type JsonFilterInput = {
   startsWith?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type Menu = {
-  __typename?: 'Menu';
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  documentId: Scalars['ID']['output'];
-  name?: Maybe<Scalars['String']['output']>;
-  publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  updatedAt?: Maybe<Scalars['DateTime']['output']>;
-};
-
-export type MenuEntityResponseCollection = {
-  __typename?: 'MenuEntityResponseCollection';
-  nodes: Array<Menu>;
-  pageInfo: Pagination;
-};
-
-export type MenuFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<MenuFiltersInput>>>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  documentId?: InputMaybe<IdFilterInput>;
-  name?: InputMaybe<StringFilterInput>;
-  not?: InputMaybe<MenuFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<MenuFiltersInput>>>;
-  publishedAt?: InputMaybe<DateTimeFilterInput>;
-  slug?: InputMaybe<StringFilterInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type MenuInput = {
-  name?: InputMaybe<Scalars['String']['input']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
 export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
-  createMenu?: Maybe<Menu>;
+  createContentPage?: Maybe<ContentPage>;
   createReviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
   createReviewWorkflowsWorkflowStage?: Maybe<ReviewWorkflowsWorkflowStage>;
   /** Create a new role */
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
-  deleteMenu?: Maybe<DeleteMutationResponse>;
+  deleteContentPage?: Maybe<DeleteMutationResponse>;
   deleteReviewWorkflowsWorkflow?: Maybe<DeleteMutationResponse>;
   deleteReviewWorkflowsWorkflowStage?: Maybe<DeleteMutationResponse>;
   deleteUploadFile?: Maybe<UploadFile>;
@@ -272,7 +326,7 @@ export type Mutation = {
   register: UsersPermissionsLoginPayload;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
-  updateMenu?: Maybe<Menu>;
+  updateContentPage?: Maybe<ContentPage>;
   updateReviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
   updateReviewWorkflowsWorkflowStage?: Maybe<ReviewWorkflowsWorkflowStage>;
   updateUploadFile: UploadFile;
@@ -290,8 +344,9 @@ export type MutationChangePasswordArgs = {
 };
 
 
-export type MutationCreateMenuArgs = {
-  data: MenuInput;
+export type MutationCreateContentPageArgs = {
+  data: ContentPageInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   status?: InputMaybe<PublicationStatus>;
 };
 
@@ -318,8 +373,9 @@ export type MutationCreateUsersPermissionsUserArgs = {
 };
 
 
-export type MutationDeleteMenuArgs = {
+export type MutationDeleteContentPageArgs = {
   documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
 
@@ -375,9 +431,10 @@ export type MutationResetPasswordArgs = {
 };
 
 
-export type MutationUpdateMenuArgs = {
-  data: MenuInput;
+export type MutationUpdateContentPageArgs = {
+  data: ContentPageInput;
   documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   status?: InputMaybe<PublicationStatus>;
 };
 
@@ -435,13 +492,13 @@ export enum PublicationStatus {
 
 export type Query = {
   __typename?: 'Query';
+  contentPage?: Maybe<ContentPage>;
+  contentPages: Array<Maybe<ContentPage>>;
+  contentPages_connection?: Maybe<ContentPageEntityResponseCollection>;
   i18NLocale?: Maybe<I18NLocale>;
   i18NLocales: Array<Maybe<I18NLocale>>;
   i18NLocales_connection?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
-  menu?: Maybe<Menu>;
-  menus: Array<Maybe<Menu>>;
-  menus_connection?: Maybe<MenuEntityResponseCollection>;
   reviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
   reviewWorkflowsWorkflowStage?: Maybe<ReviewWorkflowsWorkflowStage>;
   reviewWorkflowsWorkflowStages: Array<Maybe<ReviewWorkflowsWorkflowStage>>;
@@ -457,6 +514,31 @@ export type Query = {
   usersPermissionsUser?: Maybe<UsersPermissionsUser>;
   usersPermissionsUsers: Array<Maybe<UsersPermissionsUser>>;
   usersPermissionsUsers_connection?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+};
+
+
+export type QueryContentPageArgs = {
+  documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryContentPagesArgs = {
+  filters?: InputMaybe<ContentPageFiltersInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryContentPages_ConnectionArgs = {
+  filters?: InputMaybe<ContentPageFiltersInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
@@ -476,28 +558,6 @@ export type QueryI18NLocalesArgs = {
 
 export type QueryI18NLocales_ConnectionArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  status?: InputMaybe<PublicationStatus>;
-};
-
-
-export type QueryMenuArgs = {
-  documentId: Scalars['ID']['input'];
-  status?: InputMaybe<PublicationStatus>;
-};
-
-
-export type QueryMenusArgs = {
-  filters?: InputMaybe<MenuFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  status?: InputMaybe<PublicationStatus>;
-};
-
-
-export type QueryMenus_ConnectionArgs = {
-  filters?: InputMaybe<MenuFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   status?: InputMaybe<PublicationStatus>;
@@ -1007,10 +1067,12 @@ export type TestQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type TestQueryQuery = { __typename: 'Query' };
 
-export type GetMenuQueryVariables = Exact<{ [key: string]: never; }>;
+export type Get_Content_Pages_By_SlugQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
 
 
-export type GetMenuQuery = { __typename?: 'Query', menus: Array<{ __typename?: 'Menu', name?: string | null, slug?: string | null } | null> };
+export type Get_Content_Pages_By_SlugQuery = { __typename?: 'Query', contentPages: Array<{ __typename: 'ContentPage', slug: string, title?: string | null, showCTA?: boolean | null, Dynamic?: Array<{ __typename?: 'ComponentSectionsHero', title?: string | null, description?: string | null, id: string, isImagesRigth?: boolean | null, media?: { __typename?: 'UploadFile', alternativeText?: string | null } | null } | { __typename?: 'ComponentSectionsTextOnly', id: string, OnlyText: string } | { __typename?: 'Error' } | null> | null } | null> };
 
 
 export const TestQueryDocument = gql`
@@ -1050,43 +1112,61 @@ export type TestQueryQueryHookResult = ReturnType<typeof useTestQueryQuery>;
 export type TestQueryLazyQueryHookResult = ReturnType<typeof useTestQueryLazyQuery>;
 export type TestQuerySuspenseQueryHookResult = ReturnType<typeof useTestQuerySuspenseQuery>;
 export type TestQueryQueryResult = Apollo.QueryResult<TestQueryQuery, TestQueryQueryVariables>;
-export const GetMenuDocument = gql`
-    query GetMenu {
-  menus {
-    name
+export const Get_Content_Pages_By_SlugDocument = gql`
+    query GET_CONTENT_PAGES_BY_SLUG($slug: String!) {
+  contentPages(filters: {slug: {eq: $slug}}) {
+    __typename
     slug
+    title
+    showCTA
+    Dynamic {
+      ... on ComponentSectionsHero {
+        title
+        description
+        id
+        isImagesRigth
+        media {
+          alternativeText
+        }
+      }
+      ... on ComponentSectionsTextOnly {
+        id
+        OnlyText
+      }
+    }
   }
 }
     `;
 
 /**
- * __useGetMenuQuery__
+ * __useGet_Content_Pages_By_SlugQuery__
  *
- * To run a query within a React component, call `useGetMenuQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetMenuQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGet_Content_Pages_By_SlugQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGet_Content_Pages_By_SlugQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetMenuQuery({
+ * const { data, loading, error } = useGet_Content_Pages_By_SlugQuery({
  *   variables: {
+ *      slug: // value for 'slug'
  *   },
  * });
  */
-export function useGetMenuQuery(baseOptions?: Apollo.QueryHookOptions<GetMenuQuery, GetMenuQueryVariables>) {
+export function useGet_Content_Pages_By_SlugQuery(baseOptions: Apollo.QueryHookOptions<Get_Content_Pages_By_SlugQuery, Get_Content_Pages_By_SlugQueryVariables> & ({ variables: Get_Content_Pages_By_SlugQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetMenuQuery, GetMenuQueryVariables>(GetMenuDocument, options);
+        return Apollo.useQuery<Get_Content_Pages_By_SlugQuery, Get_Content_Pages_By_SlugQueryVariables>(Get_Content_Pages_By_SlugDocument, options);
       }
-export function useGetMenuLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMenuQuery, GetMenuQueryVariables>) {
+export function useGet_Content_Pages_By_SlugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Get_Content_Pages_By_SlugQuery, Get_Content_Pages_By_SlugQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetMenuQuery, GetMenuQueryVariables>(GetMenuDocument, options);
+          return Apollo.useLazyQuery<Get_Content_Pages_By_SlugQuery, Get_Content_Pages_By_SlugQueryVariables>(Get_Content_Pages_By_SlugDocument, options);
         }
-export function useGetMenuSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetMenuQuery, GetMenuQueryVariables>) {
+export function useGet_Content_Pages_By_SlugSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<Get_Content_Pages_By_SlugQuery, Get_Content_Pages_By_SlugQueryVariables>) {
           const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetMenuQuery, GetMenuQueryVariables>(GetMenuDocument, options);
+          return Apollo.useSuspenseQuery<Get_Content_Pages_By_SlugQuery, Get_Content_Pages_By_SlugQueryVariables>(Get_Content_Pages_By_SlugDocument, options);
         }
-export type GetMenuQueryHookResult = ReturnType<typeof useGetMenuQuery>;
-export type GetMenuLazyQueryHookResult = ReturnType<typeof useGetMenuLazyQuery>;
-export type GetMenuSuspenseQueryHookResult = ReturnType<typeof useGetMenuSuspenseQuery>;
-export type GetMenuQueryResult = Apollo.QueryResult<GetMenuQuery, GetMenuQueryVariables>;
+export type Get_Content_Pages_By_SlugQueryHookResult = ReturnType<typeof useGet_Content_Pages_By_SlugQuery>;
+export type Get_Content_Pages_By_SlugLazyQueryHookResult = ReturnType<typeof useGet_Content_Pages_By_SlugLazyQuery>;
+export type Get_Content_Pages_By_SlugSuspenseQueryHookResult = ReturnType<typeof useGet_Content_Pages_By_SlugSuspenseQuery>;
+export type Get_Content_Pages_By_SlugQueryResult = Apollo.QueryResult<Get_Content_Pages_By_SlugQuery, Get_Content_Pages_By_SlugQueryVariables>;

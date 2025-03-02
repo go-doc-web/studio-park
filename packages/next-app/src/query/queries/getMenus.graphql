@@ -1,6 +1,0 @@
-query GetMenu {
-  menus {
-    name
-    slug
-  }
-}
