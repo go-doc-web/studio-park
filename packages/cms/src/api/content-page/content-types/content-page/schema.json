@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "content_pages",
+  "info": {
+    "singularName": "content-page",
+    "pluralName": "content-pages",
+    "displayName": "Content Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "showCTA": {
+      "type": "boolean",
+      "default": false
+    },
+    "Dynamic": {
+      "type": "dynamiczone",
+      "components": [
+        "sections.hero",
+        "sections.text-only"
+      ]
+    }
+  }
+}
