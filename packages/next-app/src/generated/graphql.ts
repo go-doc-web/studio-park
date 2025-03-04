@@ -15,7 +15,7 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
-  ContentPageDynamicDynamicZoneInput: { input: any; output: any; }
+  ContentPageSectionsDynamicZoneInput: { input: any; output: any; }
   DateTime: { input: any; output: any; }
   I18NLocaleCode: { input: any; output: any; }
   JSON: { input: any; output: any; }
@@ -63,13 +63,13 @@ export type ComponentSectionsTextOnly = {
 
 export type ContentPage = {
   __typename?: 'ContentPage';
-  Dynamic?: Maybe<Array<Maybe<ContentPageDynamicDynamicZone>>>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   documentId: Scalars['ID']['output'];
   locale?: Maybe<Scalars['String']['output']>;
   localizations: Array<Maybe<ContentPage>>;
   localizations_connection?: Maybe<ContentPageRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  sections?: Maybe<Array<Maybe<ContentPageSectionsDynamicZone>>>;
   showCTA?: Maybe<Scalars['Boolean']['output']>;
   slug: Scalars['String']['output'];
   title?: Maybe<Scalars['String']['output']>;
@@ -89,8 +89,6 @@ export type ContentPageLocalizations_ConnectionArgs = {
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
-
-export type ContentPageDynamicDynamicZone = ComponentSectionsHero | ComponentSectionsTextOnly | Error;
 
 export type ContentPageEntityResponseCollection = {
   __typename?: 'ContentPageEntityResponseCollection';
@@ -114,8 +112,8 @@ export type ContentPageFiltersInput = {
 };
 
 export type ContentPageInput = {
-  Dynamic?: InputMaybe<Array<Scalars['ContentPageDynamicDynamicZoneInput']['input']>>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  sections?: InputMaybe<Array<Scalars['ContentPageSectionsDynamicZoneInput']['input']>>;
   showCTA?: InputMaybe<Scalars['Boolean']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -125,6 +123,8 @@ export type ContentPageRelationResponseCollection = {
   __typename?: 'ContentPageRelationResponseCollection';
   nodes: Array<ContentPage>;
 };
+
+export type ContentPageSectionsDynamicZone = ComponentSectionsHero | ComponentSectionsTextOnly | Error;
 
 export type DateTimeFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
@@ -1072,7 +1072,7 @@ export type Get_Content_Pages_By_SlugQueryVariables = Exact<{
 }>;
 
 
-export type Get_Content_Pages_By_SlugQuery = { __typename?: 'Query', contentPages: Array<{ __typename: 'ContentPage', slug: string, title?: string | null, showCTA?: boolean | null, Dynamic?: Array<{ __typename?: 'ComponentSectionsHero', title?: string | null, description?: string | null, id: string, isImagesRigth?: boolean | null, media?: { __typename?: 'UploadFile', alternativeText?: string | null } | null } | { __typename?: 'ComponentSectionsTextOnly', id: string, OnlyText: string } | { __typename?: 'Error' } | null> | null } | null> };
+export type Get_Content_Pages_By_SlugQuery = { __typename?: 'Query', contentPages: Array<{ __typename: 'ContentPage', slug: string, title?: string | null, showCTA?: boolean | null, sections?: Array<{ __typename: 'ComponentSectionsHero', id: string, title?: string | null, description?: string | null, isImagesRigth?: boolean | null, media?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null } | { __typename?: 'ComponentSectionsTextOnly' } | { __typename?: 'Error' } | null> | null } | null> };
 
 
 export const TestQueryDocument = gql`
@@ -1119,19 +1119,17 @@ export const Get_Content_Pages_By_SlugDocument = gql`
     slug
     title
     showCTA
-    Dynamic {
+    sections {
       ... on ComponentSectionsHero {
-        title
-        description
+        __typename
         id
-        isImagesRigth
+        title
         media {
           alternativeText
+          url
         }
-      }
-      ... on ComponentSectionsTextOnly {
-        id
-        OnlyText
+        description
+        isImagesRigth
       }
     }
   }

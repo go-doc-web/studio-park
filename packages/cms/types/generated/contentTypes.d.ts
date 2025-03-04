@@ -389,15 +389,15 @@ export interface ApiContentPageContentPage extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Dynamic: Schema.Attribute.DynamicZone<
-      ['sections.hero', 'sections.text-only']
-    >;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::content-page.content-page'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    sections: Schema.Attribute.DynamicZone<
+      ['sections.hero', 'sections.text-only']
+    >;
     showCTA: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     slug: Schema.Attribute.String &
       Schema.Attribute.Required &

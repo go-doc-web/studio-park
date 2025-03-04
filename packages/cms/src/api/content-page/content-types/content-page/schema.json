@@ -28,7 +28,7 @@
       "type": "boolean",
       "default": false
     },
-    "Dynamic": {
+    "sections": {
       "type": "dynamiczone",
       "components": [
         "sections.hero",
