@@ -1,5 +1,6 @@
 import { fetchContentPageData } from '../../services/getContentPageBySlug';
 import PageBuilder from '@/componets/page-builder';
+import { ContentPageSectionsDynamicZone } from '@/generated/graphql';
 // TODO Поки страніца  у розробці 'force-dynamic' потім export const revalidate = (60 ???)
 export const dynamic = 'force-dynamic';
 // export const revalidate = 60;
@@ -12,6 +13,10 @@ export default async function Page({ params }: PageProps) {
   const { slug } = await params;
 
   const { data, error } = await fetchContentPageData(slug);
+  const cleanedSections =
+    data?.sections?.map((section) =>
+      section === null ? undefined : section
+    ) ?? [];
 
   if (error) {
     console.error('Error fetching data:', error);
@@ -21,7 +26,9 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      <PageBuilder sections={data?.sections ?? null} />
+      <PageBuilder
+        sections={cleanedSections as ContentPageSectionsDynamicZone[]}
+      />
     </>
   );
 }

@@ -26,11 +26,5 @@
     "cms:build": "yarn workspace cms build",
     "cms:start": "yarn workspace cms start",
     "gen": "yarn workspace next-app graphqlgen"
-  },
-  "dependencies": {
-    "@apollo/client": "^3.13.1",
-    "@apollo/experimental-nextjs-app-support": "^0.11.9",
-    "better-sqlite3": "^11.8.1",
-    "sharp": "^0.33.5"
   }
 }
