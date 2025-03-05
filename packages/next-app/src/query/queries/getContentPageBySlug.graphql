@@ -4,20 +4,17 @@ query GET_CONTENT_PAGES_BY_SLUG($slug: String!) {
     slug
     title
     showCTA
-    Dynamic {
-      # TODO Разбить на фрагменті
+    sections {
       ... on ComponentSectionsHero {
-        title
-        description
+        __typename
         id
-        isImagesRigth
+        title
         media {
           alternativeText
+          url
         }
-      }
-      ... on ComponentSectionsTextOnly {
-        id
-        OnlyText
+        description
+        isImagesRigth
       }
     }
   }
