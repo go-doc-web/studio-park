@@ -8,9 +8,9 @@ const sectionMap: Record<SektionKey, FC<any> | null> = {
   ComponentSectionsHero: Sections.Hero,
 };
 
-const PageBuilder: FC<{ sections?: ContentPageSectionsDynamicZone[] }> = ({
-  sections = [],
-}) => {
+const PageBuilder: FC<{
+  sections?: ContentPageSectionsDynamicZone[] | undefined;
+}> = ({ sections = [] }) => {
   return (
     <main>
       {sections?.filter(Boolean).map((section) => {
