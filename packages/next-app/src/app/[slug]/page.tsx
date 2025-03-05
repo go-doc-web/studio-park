@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 // export const revalidate = 60;
 
 type PageProps = {
-  params: { slug: string } | Promise<{ slug: string }>;
+  params: Promise<{ slug: string }>;
 };
 
 export default async function Page({ params }: PageProps) {
