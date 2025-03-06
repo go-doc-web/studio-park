@@ -1,6 +1,8 @@
 import { fetchContentPageData } from '../../services/getContentPageBySlug';
-import PageBuilder from '@/componets/page-builder';
 import { ContentPageSectionsDynamicZone } from '@/generated/graphql';
+
+import PageBuilder from '@/componets/page-builder';
+
 // TODO Поки страніца  у розробці 'force-dynamic' потім export const revalidate = (60 ???)
 export const dynamic = 'force-dynamic';
 // export const revalidate = 60;
