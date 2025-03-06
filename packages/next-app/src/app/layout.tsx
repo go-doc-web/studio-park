@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ApolloProviders>
-          <header>Header</header>
+          <header className="container">Header</header>
           {children}
         </ApolloProviders>
       </body>

@@ -1,6 +1,6 @@
-@use '../../../styles/index.scss' as *;
+@use '../../../styles/index' as *;
 .title {
-  color: $primary-color;
+  color: $test-color;
   background-color: $text-color;
   font-size: rem(16px);
 }

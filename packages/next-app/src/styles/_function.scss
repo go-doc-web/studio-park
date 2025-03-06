@@ -1,3 +1,18 @@
 @function rem($px) {
   @return calc($px / 16px * 1rem);
 }
+
+// Функция для расчета em
+@function em($px, $context: 16px) {
+  @return ($px / $context) * 1em;
+}
+
+// Функция для затемнения цвета
+@function darken($color, $amount) {
+  @return darken($color, $amount);
+}
+
+// Функция для осветления цвета
+@function lighten($color, $amount) {
+  @return lighten($color, $amount);
+}
