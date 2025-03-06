@@ -2,6 +2,8 @@ import { ComponentSectionsHero } from '@/generated/graphql';
 import React, { FC } from 'react';
 import Image from 'next/image';
 
+import styles from './Hero.module.scss';
+
 interface HeroProps {
   data: Partial<ComponentSectionsHero>;
 }
@@ -12,7 +14,7 @@ const Hero: FC<HeroProps> = ({ data }) => {
   const imageUrl = data?.media?.url;
   return (
     <section>
-      <h2>{data?.title || 'Hero title'}</h2>
+      <h2 className={styles.title}>{data?.title || 'Hero title'}</h2>
       <p>{data?.description || 'Hero description'}</p>
       <div>
         {imageUrl && (

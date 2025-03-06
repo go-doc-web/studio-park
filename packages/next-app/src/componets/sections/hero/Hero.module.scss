@@ -1,0 +1,6 @@
+@use '../../../styles/index.scss' as *;
+.title {
+  color: $primary-color;
+  background-color: $text-color;
+  font-size: rem(16px);
+}

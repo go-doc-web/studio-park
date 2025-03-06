@@ -1,7 +1,11 @@
 import type { NextConfig } from 'next';
+const path = require('path');
 
 const nextConfig: NextConfig = {
   webpack: (config, { isServer }) => {
+    // Global scss
+
+    // ГрафQL loader
     config.module.rules.push({
       test: /\.(graphql|gql)$/,
       exclude: /node_modules/,
