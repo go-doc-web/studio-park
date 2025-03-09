@@ -27,10 +27,10 @@ export default async function Page({ params }: PageProps) {
   if (!data) return <p>Page not found</p>;
 
   return (
-    <>
+    <main>
       <PageBuilder
         sections={cleanedSections as ContentPageSectionsDynamicZone[]}
       />
-    </>
+    </main>
   );
 }

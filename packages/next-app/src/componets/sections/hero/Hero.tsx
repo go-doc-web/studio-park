@@ -13,7 +13,7 @@ const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
 const Hero: FC<HeroProps> = ({ data }) => {
   const imageUrl = data?.media?.url;
   return (
-    <section>
+    <>
       <h2 className={styles.title}>{data?.title || 'Hero title'}</h2>
       <p>{data?.description || 'Hero description'}</p>
       <div>
@@ -28,7 +28,7 @@ const Hero: FC<HeroProps> = ({ data }) => {
           />
         )}
       </div>
-    </section>
+    </>
   );
 };
 
