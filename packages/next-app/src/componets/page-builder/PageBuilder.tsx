@@ -12,7 +12,7 @@ const PageBuilder: FC<{
   sections?: ContentPageSectionsDynamicZone[] | undefined;
 }> = ({ sections = [] }) => {
   return (
-    <main>
+    <>
       {sections?.filter(Boolean).map((section) => {
         if (!section?.__typename) return null;
         if (!(section?.__typename in sectionMap)) return null;
@@ -31,9 +31,15 @@ const PageBuilder: FC<{
           );
         }
 
-        return <SectionComponent key={section.id} data={section} />;
+        return (
+          <section key={section.id}>
+            <div className="container">
+              <SectionComponent data={section} />
+            </div>
+          </section>
+        );
       })}
-    </main>
+    </>
   );
 };
 

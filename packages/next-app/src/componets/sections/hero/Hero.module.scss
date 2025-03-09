@@ -1,0 +1,6 @@
+@use '../../../styles/index' as *;
+.title {
+  color: $test-color;
+  background-color: $text-color;
+  font-size: rem(16px);
+}
